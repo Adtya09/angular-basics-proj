@@ -1,0 +1,11 @@
+<div>
+  <span>UserName : </span>
+  <input type="text" placeholder="UserName" [(ngModel)]="userName" /><span>
+    <button class="button" (click)="searchUser()">Search</button>
+  </span>
+  <div *ngIf="responseGenerated">
+    <p>User Name : {{ resp.login }}</p>
+    <p>Repo Url : {{ resp.repos_url }}</p>
+    <p>Followler : {{ resp.followers }}</p>
+  </div>
+</div>
