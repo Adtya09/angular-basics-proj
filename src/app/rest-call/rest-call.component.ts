@@ -8,17 +8,19 @@ import { RestService } from '../rest.service';
 })
 export class RestCallComponent implements OnInit {
   userName: string = '';
-  resp: any;
+  response: any;
   responseGenerated: boolean = false;
+
   constructor(private restTemplate: RestService) {}
   searchUser() {
-    this.resp = null;
     console.log('Request for ' + this.userName);
-    this.resp = this.restTemplate.callGitHubApi(this.userName);
-    console.log(this.resp);
-    if (this.resp != null) {
-      this.responseGenerated = true;
-    }
+    this.restTemplate.callGitHubApi(this.userName).subscribe((resp) => {
+      this.response = resp;
+      console.log('Rest call for ' + this.userName + ' Response -> ' + resp);
+      if (this.response != null) {
+        this.responseGenerated = true;
+      }
+    });
   }
 
   ngOnInit() {}
